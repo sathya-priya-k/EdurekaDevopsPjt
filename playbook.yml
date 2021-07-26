@@ -3,7 +3,7 @@
   become: true
   become_user: root
   tasks:
- #Using loops to run yum module iteratively on items list
+  #Using loops to run yum module iteratively on items list
   - name: Insall Git, Tomcat and Docker 
     yum: name={{item}} state=present
     loop:
