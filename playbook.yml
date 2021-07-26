@@ -1,7 +1,7 @@
 #Run the tasks in the 'myWebservers' group of hosts in inventory file
 - hosts: myWebservers 
   become: true
-  become_user: root
+  become_user: ec2-user
   tasks:
   #Using loops to run yum module iteratively on items list
   - name: Insall Git, Tomcat and Docker 
