@@ -18,7 +18,7 @@
     - docker
   #Clone Git Repository
   - name: Clone Git Repository
-    git: repo = https://github.com/sathya-priya-k/EdurekaDevopsPjt.git dest=/tmp/myrepo
+    git: repo=https://github.com/sathya-priya-k/EdurekaDevopsPjt.git dest=/tmp/myrepo
   #Generate Image from Docker file in repository inside destination directory
   - name: Build the Docker File 
     command: chdir=/tmp/myrepo docker build -t myimage:ansible
