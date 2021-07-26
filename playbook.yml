@@ -21,7 +21,7 @@
     git: repo=https://github.com/sathya-priya-k/EdurekaDevopsPjt.git dest=/tmp/myrepo
   #Generate Image from Docker file in repository inside destination directory
   - name: Build the Docker File 
-    command: chdir=/tmp/myrepo docker build -t myimage:ansible
+    command: chdir=/tmp/myrepo docker build -t myimage:ansible .
    #Create container image and do port mapping
   - name: create container
     command: docker run -itd -P myimage:ansible
