@@ -1,1 +1,27 @@
-
+#Run the tasks in the 'myWebservers' group of hosts in inventory file
+- hosts: myWebservers 
+  become: true
+  become_user: root
+  tasks:
+ #Using loops to run yum module iteratively on items list
+  - name: Insall Git, Tomcat and Docker 
+    yum: name={{item}} state=present
+    loop:
+    - git
+    - tomcat
+    - docker
+  #Using loops to run service module iteratively on items list
+  - name: Start Tomcat and Docker 
+    service: name={{item}} state=started
+    loop:
+    - tomcat
+    - docker
+  #Clone Git Repository
+  - name: Clone Git Repository
+    git: repo = https://github.com/sathya-priya-k/EdurekaDevopsPjt.git dest=/tmp/myrepo
+  #Generate Image from Docker file in repository inside destination directory
+  - name: Build the Docker File 
+    command: chdir=/tmp/myrepo docker build -t myimage:ansible
+   #Create container image and do port mapping
+  - name: create container
+    command: docker run -itd -P myimage:ansible
